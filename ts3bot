@@ -1,0 +1,126 @@
+# musicbot
+sudo apt-get install x11vnc xinit xvfb libxcursor1 ca-certificates bzip2
+
+sudo update-ca-certificates
+
+sudo apt-get install libglib2.0-0
+
+sudo mkdir -p /opt/ts3soundboard
+
+cd /opt/ts3soundboard
+
+sudo wget https://frie.se/ts3bot/sinusbot-0.9.8.tar.bz2
+
+If that command results in SSL-Errors, you can alternatively try
+
+sudo curl -O https://frie.se/ts3bot/sinusbot-0.9.8.tar.bz2
+
+sudo tar -xjf sinusbot-0.9.8.tar.bz2
+
+sudo cp config.ini.dist config.ini
+
+sudo chown -R bot:bot /opt/ts3soundboard
+
+wget http://dl.4players.de/ts/releases/3.0.18.1/TeamSpeak3-Client-linux_amd64-3.0.18.1.run
+
+chmod 0755 TeamSpeak3-Client-linux_amd64-3.0.18.1.run
+
+./TeamSpeak3-Client-linux_amd64-3.0.18.1.run
+
+apt-get install nano
+
+nano config.ini
+
+Make sure that the TS3Path is correct (if you followed this tutorial step by step, it should already match):
+
+TS3Path = "/opt/ts3soundboard/TeamSpeak3-Client-linux_amd64/ts3client_linux_amd64"
+Close the editor (Ctrl+O, Enter, Ctrl+X).
+
+cp plugin/libsoundbot_plugin.so /opt/ts3soundboard/TeamSpeak3-Client-linux_amd64/plugins
+
+chmod 0755 ts3bot
+
+./ts3bot -update
+
+cd /opt/ts3soundboard
+
+xinit /opt/ts3soundboard/ts3bot -- /usr/bin/Xvfb :1 -screen 0 800x600x16 -ac
+
+xinit /opt/ts3soundboard/ts3bot -RunningAsRootIsEvilAndIKnowThat -- /usr/bin/Xvfb :1 -screen 0 800x600x16 -ac
+Now login at http://yourip:8087/ with default user admin and password foobar.
+
+xinit /opt/ts3soundboard/ts3bot -RunningAsRootIsEvilAndIKnowThat -- /usr/bin/Xvfb :1 -screen 0 800x600x16 -ac
+
+screen -r 
+
+You can create a Shell File with Nano or GEdit(Desktop).
+
+You need screen for the Shell.
+
+Now, create the Shell File in the Folder from Musicbot and write in the File:
+
+screen -S TSMBot xinit /opt/ts3soundboard/ts3bot -- /usr/bin/Xvfb :1 -screen 0 800x600x16 -ac
+
+Save the File and give the File the Permissions with:
+
+`$ chmod +x Filename.sh`
+Run the file.
+
+`$ ./Filename.sh`
+The Bot is running.
+
+youtube-dl
+
+sudo add-apt-repository ppa:nilarimogard/webupd8
+
+sudo apt-get update
+
+sudo apt-get install youtube-dl
+
+sudo curl https://yt-dl.org/latest/youtube-dl -o /usr/local/bin/youtube-dl
+OR
+sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl
+
+sudo chmod a+rx /usr/local/bin/youtube-dl
+
+youtube-dl -U
+
+test
+To download a video file, simply run the following command. Where “VIDEO_URL” is the url of the video that you want to download.
+
+youtube-dl https://www.youtube.com/watch?v=iRYvuS9OxdA
+
+config
+
+TS3Path = "/opt/ts3soundboard/TeamSpeak3-Client-linux_amd64/ts3client_linux_amd64"
+ListenHost = "0.0.0.0"
+DataDir = ""
+ListenPort = 8087
+LocalPlayback = false
+SecretKey = [152, 107, 14, 35, 157, 52, 74, 219, 85, 48, 151, 56, 33, 11, 41, 29, 126, 184, 241, 195, 245, 52, 28, 5, 201, 120, 70, 182, 226, 41, 16, 198]
+EnableLocalFS = false
+LogLevel = 12
+EnableProfiler = false
+YoutubeDLPath = "/usr/local/bin/youtube-dl"
+EnableDebugConsole = false
+UploadLimit = 83886080
+RunAsUser = 0
+RunAsGroup = 0
+InstanceActionLimit = 6
+UseSSL = false
+SSLKeyFile = ""
+SSLCertFile = ""
+Hostname = ""
+MTU = 1500
+SampleInterval = 100
+StartVNC = false
+EnableMulticastMetadata = false
+EnableWebStream = false
+EnableAloneMode = true
+[StreamRewrites]
+
+bg
+ 
+disown
+
+exit
